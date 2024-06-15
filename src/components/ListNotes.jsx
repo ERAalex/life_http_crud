@@ -1,6 +1,8 @@
 import {useState, useEffect} from 'react'
 import request from 'axios'
 import ItemNotes from './ItemNotes'
+import AddNotes from './AddNotes'
+
 
 export default function ListNotes() {
     const [list, setList] = useState([])
@@ -41,22 +43,17 @@ export default function ListNotes() {
         <div>
             <h1>List Notes</h1>
             <button onClick={getData}>Get Data</button>
+
             <ul>    
-                {/* {list && list.length > 0 ? (
-                  list.map((item, index) => <li key={index}>{item}</li>)
-                ) : (
-                  <li>No notes available</li> // Code to be executed when list is empty
-                )} */}
-
-
             {list && list.length > 0 ? (
                   list.map((item) => <ItemNotes key={item.id} notes={item} onDelete={handleDelete}/>)
                 ) : (
                   <li>No notes available</li> // Code to be executed when list is empty
                 )}
-
-
             </ul>
+
+            <div><AddNotes onSubmit={getData} /></div>
+
         </div>
     )
 }
